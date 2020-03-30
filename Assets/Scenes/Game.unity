@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.32393706, g: 0.5901824, b: 0.9998891, a: 1}
+  m_IndirectSpecularColor: {r: 0.32395223, g: 0.5901846, b: 0.99988765, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -223,9 +223,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547c052d182ba2245a6d8707a82ebe70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainChunk: {fileID: 6546764858940181633, guid: 5ce7861e514decf459c0596a9a9e7c6c,
-    type: 3}
   player: {fileID: 1100592808}
+  terrainChunkPrefab: {fileID: 6546764858940181633, guid: 5ce7861e514decf459c0596a9a9e7c6c,
+    type: 3}
 --- !u!4 &220957753
 Transform:
   m_ObjectHideFlags: 0

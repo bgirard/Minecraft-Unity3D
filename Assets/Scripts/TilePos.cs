@@ -39,4 +39,4 @@ public class TilePos
     };
 }
 
-public enum Tile {Dirt, Grass, GrassSide, Stone, TreeSide, TreeCX, Leaves}
+public enum Tile { Dirt, Grass, GrassSide, Stone, TreeSide, TreeCX, Leaves }
