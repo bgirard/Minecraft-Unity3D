@@ -4,37 +4,31 @@ using System.Threading.Tasks;
 using Unity.Profiling;
 using UnityEngine;
 
-public class TerrainGenerator : MonoBehaviour
-{
+public class TerrainGenerator : MonoBehaviour {
     public Transform player;
     public GameObject terrainChunkPrefab;
 
     private static Dictionary<ChunkPos, TerrainChunkObject> chunks = new Dictionary<ChunkPos, TerrainChunkObject>();
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         TerrainChunkGenerator.Start();
         LoadChunks(1, true);
     }
 
-    private void Update()
-    {
+    private void Update() {
         LoadChunks(1, true);
-        LoadChunks(12);
-        UnloadChunk(12);
+        LoadChunks(8);
+        UnloadChunk(8);
     }
 
-    TerrainChunkObject LoadChunk(ChunkPos cp, bool instant)
-    {
-        if (chunks.ContainsKey(cp))
-        {
+    TerrainChunkObject LoadChunk(ChunkPos cp, bool instant) {
+        if (chunks.ContainsKey(cp)) {
             return chunks[cp];
         }
 
         TerrainChunk chunk = TerrainChunkGenerator.request(cp, instant);
-        if (chunk == null)
-        {
+        if (chunk == null) {
             return null;
         }
 
@@ -52,50 +46,41 @@ public class TerrainGenerator : MonoBehaviour
         wat.BuildMesh();
 
         chunks.Add(cp, chunkObject);
-        Debug.Log("Create Mesh" + cp);
 
         return chunkObject;
     }
 
-    void LoadChunks(int chunkDist, bool instant = false)
-    {
+    void LoadChunks(int chunkDist, bool instant = false) {
         //the current chunk the player is in
         int curChunkPosX = Mathf.FloorToInt(player.position.x / 16) * 16;
         int curChunkPosZ = Mathf.FloorToInt(player.position.z / 16) * 16;
 
-        for (int i = curChunkPosX - 16 * chunkDist; i <= curChunkPosX + 16 * chunkDist; i += 16)
-        {
-            for (int j = curChunkPosZ - 16 * chunkDist; j <= curChunkPosZ + 16 * chunkDist; j += 16)
-            {
+        for (int i = curChunkPosX - 16 * chunkDist; i <= curChunkPosX + 16 * chunkDist; i += 16) {
+            for (int j = curChunkPosZ - 16 * chunkDist; j <= curChunkPosZ + 16 * chunkDist; j += 16) {
                 ChunkPos cp = new ChunkPos(i, j);
 
                 LoadChunk(cp, instant);
             }
         }
 
-
     }
 
-    void UnloadChunk(int chunkDist)
-    {
+    void UnloadChunk(int chunkDist) {
         int curChunkPosX = Mathf.FloorToInt(player.position.x / 16) * 16;
         int curChunkPosZ = Mathf.FloorToInt(player.position.z / 16) * 16;
 
         List<ChunkPos> toDestroy = new List<ChunkPos>();
-        foreach (KeyValuePair<ChunkPos, TerrainChunkObject> c in chunks)
-        {
+        foreach (KeyValuePair<ChunkPos, TerrainChunkObject> c in chunks) {
             {
                 ChunkPos cp = c.Key;
                 if (Mathf.Abs(curChunkPosX - cp.x) > 16 * (chunkDist + 3) ||
-                    Mathf.Abs(curChunkPosZ - cp.z) > 16 * (chunkDist + 3))
-                {
+                    Mathf.Abs(curChunkPosZ - cp.z) > 16 * (chunkDist + 3)) {
                     toDestroy.Add(c.Key);
                 }
             }
         }
 
-        foreach (ChunkPos cp in toDestroy)
-        {
+        foreach (ChunkPos cp in toDestroy) {
             {
                 chunks[cp].gameObject.SetActive(false);
                 Destroy(chunks[cp].gameObject);
@@ -104,20 +89,16 @@ public class TerrainGenerator : MonoBehaviour
         }
     }
 
-
 }
 
-public struct ChunkPos
-{
+public struct ChunkPos {
     public int x, z;
-    public ChunkPos(int x, int z)
-    {
+    public ChunkPos(int x, int z) {
         this.x = x;
         this.z = z;
     }
 
-    public override string ToString()
-    {
+    public override string ToString() {
         return "[x=" + x + ",z=" + z + "]";
     }
 }
