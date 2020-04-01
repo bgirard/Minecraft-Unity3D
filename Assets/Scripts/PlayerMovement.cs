@@ -51,7 +51,6 @@ public class PlayerMovement : MonoBehaviour {
         } else {
             LayerMask entity = 1 << LayerMask.NameToLayer("Entity");
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, 100, entity);
-            Debug.Log(hitColliders);
             PlayerMovement target = GetClosestEnemy(hitColliders, 100);
             if (target != null) {
 
@@ -64,7 +63,12 @@ public class PlayerMovement : MonoBehaviour {
 
                 transform.eulerAngles = new Vector3(xRotationClamp, transform.eulerAngles.y, transform.eulerAngles.z);
 
-                controller.Move(_direction * speed / 2 * Time.deltaTime);
+                Vector3 t = target.transform.position - transform.position;
+                float dist = t.x * t.x + t.y * t.y + t.z * t.z;
+                if (dist > 3 * 3) {
+                    _direction.y = 0;
+                    controller.Move(_direction * speed * Time.deltaTime);
+                }
             }
         }
 
@@ -81,7 +85,6 @@ public class PlayerMovement : MonoBehaviour {
             if (c.gameObject == gameObject)
                 continue;
             PlayerMovement cube = c.GetComponent<PlayerMovement>();
-            Debug.Log("Check " + c.name);
             if (cube != null) {
                 Vector3 t = c.transform.position - currentPos;
                 float dist = t.x * t.x + t.y * t.y + t.z * t.z;
