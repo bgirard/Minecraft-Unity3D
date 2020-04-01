@@ -1473,6 +1473,7 @@ MonoBehaviour:
   jumpHeight: 3
   groundDistance: 0.4
   isMainController: 1
+  isChase: 0
 --- !u!33 &1100592807
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2151,6 +2152,7 @@ MonoBehaviour:
   jumpHeight: 3
   groundDistance: 0.4
   isMainController: 0
+  isChase: 1
 --- !u!33 &2111861837
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2185,15 +2187,15 @@ GameObject:
   m_Component:
   - component: {fileID: 3248338879420093186}
   - component: {fileID: 2834078683279919057}
-  - component: {fileID: 2534866581993854902}
   - component: {fileID: 2534866581993854901}
+  - component: {fileID: 2534866581993854902}
   m_Layer: 10
   m_Name: Sign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!143 &2534866581993854901
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2226,10 +2228,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   jumpSpeed: 8
-  gravity: -9.8
+  gravity: -81.67
   jumpHeight: 3
   groundDistance: 0.4
   isMainController: 0
+  isChase: 0
 --- !u!33 &2834078683279919057
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2245,12 +2248,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2534866581993854900}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.4, y: 36.78, z: 42.49}
+  m_LocalRotation: {x: -0, y: 0.7031983, z: -0, w: 0.71099377}
+  m_LocalPosition: {x: 11.366, y: 39.315, z: 36.249}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1295499389}
   - {fileID: 2101436470}
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 89.368004, z: 0}

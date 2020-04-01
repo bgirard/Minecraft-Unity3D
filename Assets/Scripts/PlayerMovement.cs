@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public float groundDistance = .4f;
     public bool isMainController = false;
+    public bool isChase = false;
 
     private Vector3 velocity;
     private CharacterController controller;
@@ -48,7 +49,8 @@ public class PlayerMovement : MonoBehaviour {
             if (isMainController && Input.GetButtonDown("Jump") && isGrounded) {
                 velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
             }
-        } else {
+        }
+        if (isChase) {
             LayerMask entity = 1 << LayerMask.NameToLayer("Entity");
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, 100, entity);
             PlayerMovement target = GetClosestEnemy(hitColliders, 100);
@@ -84,7 +86,7 @@ public class PlayerMovement : MonoBehaviour {
             if (c.gameObject == gameObject)
                 continue;
             PlayerMovement cube = c.GetComponent<PlayerMovement>();
-            if (cube != null) {
+            if (cube != null && cube.isMainController) {
                 Vector3 t = c.transform.position - currentPos;
                 float dist = t.x * t.x + t.y * t.y + t.z * t.z;
                 if (dist < minDist) {
