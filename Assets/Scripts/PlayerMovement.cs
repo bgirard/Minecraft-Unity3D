@@ -41,30 +41,31 @@ public class PlayerMovement : MonoBehaviour {
         if (isMainController) {
             horizontal = Input.GetAxis("Horizontal");
             vertical = Input.GetAxis("Vertical");
+            Vector3 moveDirection = transform.right * horizontal + transform.forward * vertical;
+
+            controller.Move(moveDirection * speed * Time.deltaTime);
+
+            if (isMainController && Input.GetButtonDown("Jump") && isGrounded) {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+            }
         } else {
             LayerMask entity = 1 << LayerMask.NameToLayer("Entity");
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, 100, entity);
             Debug.Log(hitColliders);
             PlayerMovement target = GetClosestEnemy(hitColliders, 100);
             if (target != null) {
-                Debug.Log("Found " + target.name);
 
                 Vector3 _direction = (target.transform.position - transform.position).normalized;
-                Quaternion _lookRotation = Quaternion.LookRotation(_direction);
+                Quaternion _lookRotation = Quaternion.LookRotation(_direction, Vector3.up);
                 transform.rotation = _lookRotation;
 
+                float xRotation = transform.eulerAngles.x > 180 ? transform.eulerAngles.x - 360 : transform.eulerAngles.x;
+                float xRotationClamp = Mathf.Clamp(xRotation, -60f, 60f);
+
+                transform.eulerAngles = new Vector3(xRotationClamp, transform.eulerAngles.y, transform.eulerAngles.z);
+
                 controller.Move(_direction * speed / 2 * Time.deltaTime);
-            } else {
-                Debug.Log("Not found");
             }
-        }
-
-        Vector3 moveDirection = transform.right * horizontal + transform.forward * vertical;
-
-        controller.Move(moveDirection * speed * Time.deltaTime);
-
-        if (isMainController && Input.GetButtonDown("Jump") && isGrounded) {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
 
         velocity.y += gravity * Time.deltaTime;
