@@ -60,7 +60,6 @@ public class PlayerMovement : MonoBehaviour {
 
                 float xRotation = transform.eulerAngles.x > 180 ? transform.eulerAngles.x - 360 : transform.eulerAngles.x;
                 float xRotationClamp = Mathf.Clamp(xRotation, -60f, 60f);
-
                 transform.eulerAngles = new Vector3(xRotationClamp, transform.eulerAngles.y, transform.eulerAngles.z);
 
                 Vector3 t = target.transform.position - transform.position;

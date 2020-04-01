@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TerrainModifier : MonoBehaviour
-{
+public class TerrainModifier : MonoBehaviour {
     public LayerMask groundLayer;
 
     public Inventory inv;
@@ -11,30 +10,23 @@ public class TerrainModifier : MonoBehaviour
     float maxDist = 4;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
 
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         bool leftClick = Input.GetMouseButtonDown(0);
         bool rightClick = Input.GetMouseButtonDown(1);
-        if (leftClick || rightClick)
-        {
+        if (leftClick || rightClick) {
             RaycastHit hitInfo;
-            if (Physics.Raycast(transform.position, transform.forward, out hitInfo, maxDist, groundLayer))
-            {
+            if (Physics.Raycast(transform.position, transform.forward, out hitInfo, maxDist, groundLayer)) {
                 Vector3 pointInTargetBlock;
 
                 //destroy
-                if (rightClick)
-                {
-                    pointInTargetBlock = hitInfo.point + transform.forward * .01f;//move a little inside the block
-                }
-                else
-                {
+                if (rightClick) {
+                    pointInTargetBlock = hitInfo.point + transform.forward * .01f; //move a little inside the block
+                } else {
                     pointInTargetBlock = hitInfo.point - transform.forward * .01f;
                 }
                 //get the terrain chunk (can't just use collider)
@@ -43,33 +35,28 @@ public class TerrainModifier : MonoBehaviour
 
                 ChunkPos cp = new ChunkPos(chunkPosX, chunkPosZ);
 
-                /*
-                                TerrainChunk tc = TerrainGenerator.chunks[cp];
+                TerrainGenerator.updateChunk(cp, (chunk) => {
+                    //index of the target block
+                    int bix = Mathf.FloorToInt(pointInTargetBlock.x) - chunkPosX + 1;
+                    int biy = Mathf.FloorToInt(pointInTargetBlock.y);
+                    int biz = Mathf.FloorToInt(pointInTargetBlock.z) - chunkPosZ + 1;
 
-                                //index of the target block
-                                int bix = Mathf.FloorToInt(pointInTargetBlock.x) - chunkPosX + 1;
-                                int biy = Mathf.FloorToInt(pointInTargetBlock.y);
-                                int biz = Mathf.FloorToInt(pointInTargetBlock.z) - chunkPosZ + 1;
+                    bool hasChanged = false;
+                    if (rightClick) //replace block with air
+                    {
+                        chunk.blocks[bix, biy, biz] = BlockType.Air;
+                        hasChanged = true;
 
-                                if (rightClick)//replace block with air
-                                {
-                                    inv.AddToInventory(tc.blocks[bix, biy, biz]);
-                                    tc.blocks[bix, biy, biz] = BlockType.Air;
-                                    tc.BuildMesh();
-                                }
-                                else if (leftClick)
-                                {
-                                    if (inv.CanPlaceCur())
-                                    {
-                                        tc.blocks[bix, biy, biz] = inv.GetCurBlock();
+                        inv.AddToInventory(chunk.blocks[bix, biy, biz]);
+                    } else if (leftClick && inv.CanPlaceCur()) {
+                        chunk.blocks[bix, biy, biz] = inv.GetCurBlock();
+                        hasChanged = true;
 
-                                        tc.BuildMesh();
+                        inv.ReduceCur();
+                    }
+                    return hasChanged;
+                });
 
-                                        inv.ReduceCur();
-                                    }
-
-                                }
-                                */
             }
         }
     }

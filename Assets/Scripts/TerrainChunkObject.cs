@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-class TerrainChunkObject : MonoBehaviour
-{
-    public Mesh BuildMesh(TerrainChunk chunk)
-    {
+class TerrainChunkObject : MonoBehaviour {
+    private TerrainChunk chunk = null;
+
+    public TerrainChunk Chunk { get => chunk; set => chunk = value; }
+
+    public Mesh BuildMesh(TerrainChunk chunk) {
+        this.chunk = chunk;
         Mesh mesh = new Mesh();
 
         mesh.vertices = chunk.getVerts().ToArray();
@@ -16,5 +20,10 @@ class TerrainChunkObject : MonoBehaviour
         GetComponent<MeshFilter>().mesh = mesh;
         GetComponent<MeshCollider>().sharedMesh = mesh;
         return mesh;
+    }
+
+    public void UpdateChunk() {
+        chunk.UpdateTrig();
+        BuildMesh(chunk);
     }
 }

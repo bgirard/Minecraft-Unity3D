@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Unity.Profiling;
@@ -48,6 +49,14 @@ public class TerrainGenerator : MonoBehaviour {
         chunks.Add(cp, chunkObject);
 
         return chunkObject;
+    }
+
+    public static void updateChunk(ChunkPos cp, Func<TerrainChunk, bool> cb) {
+        TerrainChunkObject chunkObject = chunks[cp];
+        bool hasChanged = cb(chunkObject.Chunk);
+        if (hasChanged) {
+            chunkObject.UpdateChunk();
+        }
     }
 
     void LoadChunks(int chunkDist, bool instant = false) {

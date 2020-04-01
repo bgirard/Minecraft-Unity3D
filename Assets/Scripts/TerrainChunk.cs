@@ -27,8 +27,14 @@ public class TerrainChunk {
         GenerateTrig();
     }
 
-    void GenerateTrig() {
+    public void UpdateTrig() {
+        GenerateTrig();
+    }
 
+    void GenerateTrig() {
+        verts = new List<Vector3>();
+        tris = new List<int>();
+        uvs = new List<Vector2>();
         for (int x = 1; x < chunkWidth + 1; x++) {
             for (int z = 1; z < chunkWidth + 1; z++) {
                 for (int y = 0; y < chunkHeight; y++) {
