@@ -7,6 +7,7 @@ This project is a fork from [Sam Hogan's Minecraft in 24 hours](https://youtu.be
 - Basic chase zombie.
 - Viking model for the main player.
 - Update nearby chunks when updating terran to fix visual errors.
+- Day/Night cycle
 
 # Contributing
 

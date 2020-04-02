@@ -5,6 +5,7 @@ using UnityEngine;
 public class DayNightCycle : MonoBehaviour {
     public float speed = 20;
     private float rotation = 40;
+    private float skyboxRotation = 0;
 
     // Start is called before the first frame update
     void Start() {
@@ -26,5 +27,9 @@ public class DayNightCycle : MonoBehaviour {
         } else {
             light.intensity = 1;
         }
+
+        RenderSettings.skybox.SetFloat("_Exposure", light.intensity);
+        skyboxRotation += Time.deltaTime * speed / 10f;
+        RenderSettings.skybox.SetFloat("_Rotation", skyboxRotation);
     }
 }
