@@ -180,7 +180,7 @@ public class TerrainChunk {
                 for (int m = y + treeHeight - 1; m <= y + treeHeight - 1 + treeHeight; m++) {
                     for (int k = xPos - (int) (leavesWidth * .5) + iter / 2; k <= xPos + (int) (leavesWidth * .5) - iter / 2; k++)
                         for (int l = zPos - (int) (leavesWidth * .5) + iter / 2; l <= zPos + (int) (leavesWidth * .5) - iter / 2; l++) {
-                            if (k >= 0 && k < 16 && l >= 0 && l < 16 && m >= 0 && m < 64 && rand.NextDouble() < .8f)
+                            if (k > 0 && k < 16 && l > 0 && l < 16 && m >= 0 && m < 64 && rand.NextDouble() < .8f)
                                 blocks[k, m, l] = BlockType.Leaves;
                         }
 
