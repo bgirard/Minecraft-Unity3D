@@ -35,26 +35,22 @@ public class TerrainModifier : MonoBehaviour {
 
                 ChunkPos cp = new ChunkPos(chunkPosX, chunkPosZ);
 
-                TerrainGenerator.updateChunk(cp, (chunk) => {
+                TerrainGenerator.updateChunk(cp, (blocks, updateBlock) => {
                     //index of the target block
                     int bix = Mathf.FloorToInt(pointInTargetBlock.x) - chunkPosX + 1;
                     int biy = Mathf.FloorToInt(pointInTargetBlock.y);
                     int biz = Mathf.FloorToInt(pointInTargetBlock.z) - chunkPosZ + 1;
 
-                    bool hasChanged = false;
                     if (rightClick) //replace block with air
                     {
-                        chunk.blocks[bix, biy, biz] = BlockType.Air;
-                        hasChanged = true;
+                        updateBlock(bix, biy, biz, BlockType.Air);
 
-                        inv.AddToInventory(chunk.blocks[bix, biy, biz]);
+                        inv.AddToInventory(blocks[bix, biy, biz]);
                     } else if (leftClick && inv.CanPlaceCur()) {
-                        chunk.blocks[bix, biy, biz] = inv.GetCurBlock();
-                        hasChanged = true;
+                        updateBlock(bix, biy, biz, inv.GetCurBlock());
 
                         inv.ReduceCur();
                     }
-                    return hasChanged;
                 });
 
             }

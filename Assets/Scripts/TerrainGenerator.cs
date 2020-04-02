@@ -51,12 +51,61 @@ public class TerrainGenerator : MonoBehaviour {
         return chunkObject;
     }
 
-    public static void updateChunk(ChunkPos cp, Func<TerrainChunk, bool> cb) {
-        TerrainChunkObject chunkObject = chunks[cp];
-        bool hasChanged = cb(chunkObject.Chunk);
-        if (hasChanged) {
-            chunkObject.UpdateChunk();
+    public static BlockType getBlock(ChunkPos pos, int x, int y, int z) {
+        while (x < 0) {
+            x += TerrainChunk.chunkWidth;
+            pos = new ChunkPos(pos.x - TerrainChunk.chunkWidth, pos.z);
         }
+        while (x >= TerrainChunk.chunkWidth) {
+            x -= TerrainChunk.chunkWidth;
+            pos = new ChunkPos(pos.x + TerrainChunk.chunkWidth, pos.z);
+        }
+        while (z < 0) {
+            z += TerrainChunk.chunkWidth;
+            pos = new ChunkPos(pos.x, pos.z - TerrainChunk.chunkWidth);
+        }
+        while (z >= TerrainChunk.chunkWidth) {
+            z -= TerrainChunk.chunkWidth;
+            pos = new ChunkPos(pos.x, pos.z + TerrainChunk.chunkWidth);
+        }
+        if (!chunks.ContainsKey(pos)) {
+            return BlockType.Air;
+        }
+        TerrainChunkObject chunk = chunks[pos];
+        return chunk.Chunk.blocks[x + 1, y, z + 1];
+    }
+
+    public static void updateChunk(ChunkPos cp, Action<BlockType[, , ], Action<int, int, int, BlockType>> cb) {
+        TerrainChunkObject chunkObject = chunks[cp];
+        BlockType[, , ] blocks = chunkObject.Chunk.blocks;
+        HashSet<TerrainChunkObject> changed = new HashSet<TerrainChunkObject>();
+        cb(blocks, (x, y, z, block) => {
+            updateChunkNearbyHelper(cp, changed, x, y, z, block);
+            if (x == 1) {
+                updateChunkNearbyHelper(new ChunkPos(cp.x - TerrainChunk.chunkWidth, cp.z), changed, TerrainChunk.chunkWidth + 1, y, z, block);
+            }
+            if (z == 1) {
+                updateChunkNearbyHelper(new ChunkPos(cp.x, cp.z - TerrainChunk.chunkWidth), changed, x, y, TerrainChunk.chunkWidth + 1, block);
+            }
+            if (x == 1 + TerrainChunk.chunkWidth - 1) {
+                updateChunkNearbyHelper(new ChunkPos(cp.x + TerrainChunk.chunkWidth, cp.z), changed, 0, y, z, block);
+            }
+            if (z == 1 + TerrainChunk.chunkWidth - 1) {
+                updateChunkNearbyHelper(new ChunkPos(cp.x, cp.z + TerrainChunk.chunkWidth), changed, x, y, 0, block);
+            }
+        });
+        foreach (var chunk in changed) {
+            chunk.UpdateChunk();
+        }
+    }
+
+    private static void updateChunkNearbyHelper(ChunkPos cp, HashSet<TerrainChunkObject> changed, int x, int y, int z, BlockType block) {
+        if (!chunks.ContainsKey(cp)) {
+            Debug.Log("Not found");
+            return;
+        }
+        chunks[cp].Chunk.blocks[x, y, z] = block;
+        changed.Add(chunks[cp]);
     }
 
     void LoadChunks(int chunkDist, bool instant = false) {

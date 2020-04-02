@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Profiling;
 using UnityEngine;
 
 public class TerrainChunk {
@@ -29,6 +30,19 @@ public class TerrainChunk {
 
     public void UpdateTrig() {
         GenerateTrig();
+    }
+
+    public void RefreshBlocks() {
+        using(new ProfilerMarker("RefreshBlocks").Auto()) {
+            for (int x = 0; x < chunkWidth + 2; x++) {
+                for (int z = 0; z < chunkWidth + 2; z++) {
+                    for (int y = 0; y < chunkHeight; y++) {
+                        BlockType block = TerrainGenerator.getBlock(pos, x - 1, y, z - 1);
+                        blocks[x, y, z] = block;
+                    }
+                }
+            }
+        }
     }
 
     void GenerateTrig() {

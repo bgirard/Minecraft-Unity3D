@@ -23,7 +23,9 @@ class TerrainChunkObject : MonoBehaviour {
     }
 
     public void UpdateChunk() {
+        //chunk.RefreshBlocks();
         chunk.UpdateTrig();
         BuildMesh(chunk);
+        this.name = this.name + " (u)";
     }
 }
