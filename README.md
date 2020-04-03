@@ -1,5 +1,7 @@
 # Unity Voxel Community Porject
 
+![Screenshot of the Firefox Profiler](./Assets/screenshot.png?raw=true)
+
 This project is a fork from [Sam Hogan's Minecraft in 24 hours](https://youtu.be/Nj8gt_92c-M).
 
 The aim of this project is to build a game for fun of the development. The end project is just a means
