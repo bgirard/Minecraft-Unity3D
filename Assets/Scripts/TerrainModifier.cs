@@ -2,31 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TerrainModifier : MonoBehaviour {
+public class TerrainModifier : MonoBehaviour
+{
     public LayerMask groundLayer;
 
     public Inventory inv;
 
-    float maxDist = 4;
+    float maxDist = 32;
 
     // Start is called before the first frame update
-    void Start() {
+    void Start()
+    {
 
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         bool leftClick = Input.GetMouseButtonDown(0);
         bool rightClick = Input.GetMouseButtonDown(1);
-        if (leftClick || rightClick) {
-            RaycastHit hitInfo;
-            if (Physics.Raycast(transform.position, transform.forward, out hitInfo, maxDist, groundLayer)) {
-                Vector3 pointInTargetBlock;
+        RaycastHit hitInfo;
+        if (Physics.Raycast(transform.position, transform.forward, out hitInfo, maxDist, groundLayer))
+        {
+            var selection = GameObject.Find("BlockSelection");
+            if (selection != null)
+            {
+                var selectionPoint = hitInfo.point + transform.forward * .01f; //move a little inside the block
+                selection.transform.position = new Vector3(Mathf.FloorToInt(selectionPoint.x), Mathf.FloorToInt(selectionPoint.y), Mathf.FloorToInt(selectionPoint.z));
+            }
+            Vector3 pointInTargetBlock;
+            if (leftClick || rightClick)
+            {
 
                 //destroy
-                if (rightClick) {
+                if (rightClick)
+                {
                     pointInTargetBlock = hitInfo.point + transform.forward * .01f; //move a little inside the block
-                } else {
+                }
+                else
+                {
                     pointInTargetBlock = hitInfo.point - transform.forward * .01f;
                 }
                 //get the terrain chunk (can't just use collider)
@@ -35,7 +49,8 @@ public class TerrainModifier : MonoBehaviour {
 
                 ChunkPos cp = new ChunkPos(chunkPosX, chunkPosZ);
 
-                TerrainGenerator.updateChunk(cp, (blocks, updateBlock) => {
+                TerrainGenerator.updateChunk(cp, (blocks, updateBlock) =>
+                {
                     //index of the target block
                     int bix = Mathf.FloorToInt(pointInTargetBlock.x) - chunkPosX + 1;
                     int biy = Mathf.FloorToInt(pointInTargetBlock.y);
@@ -46,7 +61,9 @@ public class TerrainModifier : MonoBehaviour {
                         updateBlock(bix, biy, biz, BlockType.Air);
 
                         inv.AddToInventory(blocks[bix, biy, biz]);
-                    } else if (leftClick && inv.CanPlaceCur()) {
+                    }
+                    else if (leftClick && inv.CanPlaceCur())
+                    {
                         updateBlock(bix, biy, biz, inv.GetCurBlock());
 
                         inv.ReduceCur();
