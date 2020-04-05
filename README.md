@@ -27,3 +27,4 @@ If you're interested in helping with project I'll be very liberal in accepting p
 Sam Hogan - Original Author
 Benoit Girard - Voxel Project Starter
 Howard Campbell - Voxel models and more
+K.jpg - Terrain Generation Contributor
