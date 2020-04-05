@@ -36,7 +36,6 @@ public class DayNightCycle : MonoBehaviour
         {
             light.intensity = 1;
         }
-        light.intensity = 0;
 
         RenderSettings.skybox.SetFloat("_Exposure", light.intensity);
         skyboxRotation += Time.deltaTime * speed / 10f;
