@@ -1,6 +1,6 @@
-# Unity Voxel Community Porject
+# Unity Voxel Community Project
 
-![Screenshot of the Firefox Profiler](./Assets/screenshot.png?raw=true)
+![Screenshot](./Assets/screenshot.png?raw=true)
 
 This project is a fork from [Sam Hogan's Minecraft in 24 hours](https://youtu.be/Nj8gt_92c-M).
 
@@ -20,7 +20,9 @@ So far the following improvements have been made:
 
 # Contributing
 
-If you're interested in helping with project I'll be very liberal in accepting pull request so send away!
+My plan is to accept every PR that incrementally makes the game better and is of game jam acceptable code quality. If there's enough interest in the project then we can discuss and evolve the guidelines.
+
+Join Discord: https://discord.gg/bk4528
 
 # Credits
 
