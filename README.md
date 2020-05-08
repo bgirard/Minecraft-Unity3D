@@ -22,7 +22,7 @@ So far the following improvements have been made:
 
 My plan is to accept every PR that incrementally makes the game better and is of game jam acceptable code quality. If there's enough interest in the project then we can discuss and evolve the guidelines.
 
-Join Discord: https://discord.gg/bk4528
+Join Discord: https://discord.gg/sdmHAP4
 
 # Credits
 
