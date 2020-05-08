@@ -59,7 +59,6 @@ public class PlayerMovement : MonoBehaviour
 
             if (isMainController && Input.GetButtonDown("Jump") && isGrounded)
             {
-                Debug.Log("Jump");
                 velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
             }
         }
@@ -73,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
                 Vector3 _direction = (target.transform.position - transform.position).normalized;
                 Quaternion _lookRotation = Quaternion.LookRotation(_direction, Vector3.up);
-                transform.rotation = _lookRotation;
+                transform.rotation = Quaternion.Euler(0, _lookRotation.eulerAngles.y, _lookRotation.eulerAngles.z);
 
                 float xRotation = transform.eulerAngles.x > 180 ? transform.eulerAngles.x - 360 : transform.eulerAngles.x;
                 float xRotationClamp = Mathf.Clamp(xRotation, -60f, 60f);
