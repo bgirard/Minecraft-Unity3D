@@ -10,6 +10,7 @@ public class Inventory : MonoBehaviour
     public BlockType[] matTypes;
     public Image[] invImgs;
     public Image[] matImgs;
+    public Text[] countsText;
 
     int curMat;
 
@@ -59,6 +60,8 @@ public class Inventory : MonoBehaviour
 
         if (matCounts[curMat] == 0)
             matImgs[curMat].gameObject.SetActive(false);
+            
+         countsText[curMat].text = matCounts[curMat].ToString();
     }
 
     public void AddToInventory(BlockType block)
@@ -74,6 +77,7 @@ public class Inventory : MonoBehaviour
         matCounts[i]++;
         if (matCounts[i] == 1)
             matImgs[i].gameObject.SetActive(true);
-
+        
+         countsText[curMat].text = matCounts[curMat].ToString();
     }
 }
