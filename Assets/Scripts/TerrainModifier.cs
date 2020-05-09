@@ -56,16 +56,15 @@ public class TerrainModifier : MonoBehaviour
                     int biy = Mathf.FloorToInt(pointInTargetBlock.y);
                     int biz = Mathf.FloorToInt(pointInTargetBlock.z) - chunkPosZ + 1;
 
-                    if (rightClick) //replace block with air
+                   if (rightClick) //replace block with air
                     {
                         updateBlock(bix, biy, biz, BlockType.Air);
-
+                        selection.transform.position = Vector3.zero;
                         inv.AddToInventory(blocks[bix, biy, biz]);
                     }
-                    else if (leftClick && inv.CanPlaceCur())
+                    else if (leftClick && inv.CanPlaceCur() && Vector3.Distance(hitInfo.point, transform.position) > 2f)
                     {
                         updateBlock(bix, biy, biz, inv.GetCurBlock());
-
                         inv.ReduceCur();
                     }
                 });
