@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 6.0f;
     public float accelerated = 12f;
+    
     public float jumpSpeed = 1.0f;
     public float gravity = -9.8f;
     public float jumpHeight = 3f;
@@ -16,19 +17,40 @@ public class PlayerMovement : MonoBehaviour
     public bool isMainController = false;
     public bool isChase = false;
 
+    public float jumpCooldown = 0.3f;
+    [Space(10)] 
+    public CurrentlyInBlock bodyInBlock;
+    public float speedUnderwater = 3.0f;
+    public float acceleratedUnderwater = 6f;
+    public float jumpHeightUnderwater = 5f;
+    public float gravityUnderwater = -4.9f;
+    
+    
     private Vector3 velocity;
     private CharacterController controller;
+    private Animator animator;
     private bool isGrounded;
+    
+    private float jumpCooldownTimePassed = 1;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        bool jumpCooldownIsOver = false;
+        jumpCooldownTimePassed += Time.deltaTime;
+        
+        if (jumpCooldownTimePassed > jumpCooldown)
+        {
+            jumpCooldownIsOver = true;
+        }
+            
         Transform groundCheck = transform.Find("GroundCheck");
         LayerMask terrainMask = 1 << LayerMask.NameToLayer("Terrain");
         if (groundCheck == null)
@@ -45,30 +67,45 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = 0;
         float vertical = 0;
 
+        float currentGravity = gravity;
+        
         if (isMainController)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
-            var animator = GetComponentInChildren<Animator>();
-            if (animator != null || true)
+
+            var underwater = bodyInBlock.inBlock == BlockType.Water;
+            float currentSpeed = 0;
+            float currentJumpHeight = underwater ? jumpHeightUnderwater : jumpHeight;
+            currentGravity = underwater ? gravityUnderwater : gravity;
+
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            {
+                currentSpeed = underwater ? acceleratedUnderwater : accelerated; 
+            }
+            else
+            {
+                currentSpeed = underwater ? speedUnderwater : speed; 
+            }
+
+            if (animator != null)
             {
                 animator?.SetBool("Walking", Input.GetAxisRaw("Vertical") != 0);
             }
             Vector3 moveDirection = transform.right * horizontal + transform.forward * vertical;
 
-            if (isMainController && Input.GetButton("Jump") && isGrounded)
+            if (isMainController && Input.GetButton("Jump") && jumpCooldownIsOver && (isGrounded || underwater))
             {
-                velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+                jumpCooldownTimePassed = 0;
+                
+                if (isGrounded)
+                {
+                    currentJumpHeight = jumpHeight;
+                }
+                velocity.y = Mathf.Sqrt(currentJumpHeight * -2 * currentGravity);
             }
 
-            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-            {
-                controller.Move(moveDirection * accelerated * Time.deltaTime);
-            }
-            else
-            {
-                controller.Move(moveDirection * speed * Time.deltaTime);
-            }
+            controller.Move(moveDirection * currentSpeed * Time.deltaTime);
         }
         if (isChase)
         {
@@ -96,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        velocity.y += gravity * Time.deltaTime;
+        velocity.y += currentGravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
     }

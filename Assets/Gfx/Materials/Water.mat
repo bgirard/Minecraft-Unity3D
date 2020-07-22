@@ -70,7 +70,7 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _DepthDensity: 0.25
+    - _DepthDensity: 0.425
     - _DetailNormalMapScale: 1
     - _DistanceDensity: 0.04
     - _DstBlend: 10
@@ -113,7 +113,7 @@ Material:
     - _DeepColor: {r: 0, g: 0.031137936, b: 0.043, a: 1}
     - _EdgeFoamColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FarColor: {r: 0, g: 0.14831348, b: 0.28260717, a: 1}
+    - _FarColor: {r: 0, g: 0.14896667, b: 0.282372, a: 1}
     - _SSSColor: {r: 0.15222874, g: 0.2735849, b: 0.06323425, a: 1}
     - _ShadowColor: {r: 0.16220179, g: 0.21706232, b: 0.25471693, a: 1}
     - _ShallowColor: {r: 0.44313726, g: 0.9137255, b: 0.6627451, a: 1}
