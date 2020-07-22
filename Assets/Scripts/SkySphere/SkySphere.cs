@@ -27,6 +27,10 @@ public class SkySphere : MonoBehaviour
     public Gradient horizonColor = new Gradient();
     public Gradient waterColor = new Gradient();
     public Gradient environmentColor = new Gradient();
+
+    public float underwaterFogDistance = 0.05f;
+    public Color underwaterFogColor = Color.cyan;
+    public Color regularFogColor = Color.cyan;
     
     private void Start()
     {
@@ -55,7 +59,8 @@ public class SkySphere : MonoBehaviour
         water.SetColor("_FarColor", waterColor.Evaluate(currentTime));
         RenderSettings.ambientSkyColor = environmentColor.Evaluate(currentTime);
 
-        RenderSettings.fogDensity = fogFade.Evaluate(currentTime);
+        RenderSettings.fogDensity = UnderwaterEffect.underwater ?  underwaterFogDistance : fogFade.Evaluate(currentTime);
+        RenderSettings.fogColor = UnderwaterEffect.underwater ? underwaterFogColor : regularFogColor;
         sunLight.intensity = lightFade.Evaluate(currentTime);
     }
 }

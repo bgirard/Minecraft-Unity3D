@@ -18,7 +18,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 2
+    value: 2.4
   threshold:
     overrideState: 1
     value: 0
@@ -42,11 +42,11 @@ MonoBehaviour:
     value: 1
   dirtTexture:
     overrideState: 1
-    value: {fileID: 2800000, guid: d3a04662372bd5d438b33f8734ba3754, type: 3}
+    value: {fileID: 2800000, guid: 1fb1e7eb94330144d8b666b2d6a90763, type: 3}
     defaultState: 1
   dirtIntensity:
     overrideState: 1
-    value: 2.02
+    value: 0.74
 --- !u!114 &-1986935979771594635
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -149,11 +149,11 @@ MonoBehaviour:
     overrideState: 0
     value: 1
   temperature:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: -23
   tint:
     overrideState: 1
-    value: -29
+    value: -41
   colorFilter:
     overrideState: 0
     value: {r: 1, g: 1, b: 1, a: 1}
@@ -162,13 +162,13 @@ MonoBehaviour:
     value: 0
   saturation:
     overrideState: 1
-    value: -67
+    value: -72
   brightness:
     overrideState: 0
     value: 0
   postExposure:
     overrideState: 1
-    value: -0.81
+    value: -1.12
   contrast:
     overrideState: 1
     value: -31
@@ -197,8 +197,8 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   mixerBlueOutBlueIn:
-    overrideState: 0
-    value: 100
+    overrideState: 1
+    value: 170
   lift:
     overrideState: 0
     value: {x: 1, y: 1, z: 1, w: 0}
