@@ -29,7 +29,11 @@ public class CurrentlyInBlock : MonoBehaviour
                 int biz = Mathf.FloorToInt(position.z + offset.z) - chunkPosZ;
 
                 inBlock = TerrainGenerator.getBlock(cp, bix, biy, biz);
-                text.text = "" + inBlock;
+
+                if (text != null)
+                {
+                        text.text = "" + inBlock;
+                }
 
                 /*if (Input.GetKeyDown(KeyCode.LeftControl))
                 {

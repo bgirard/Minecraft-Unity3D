@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.41037738, g: 0.85289377, b: 1, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.0057697524
+  m_FogDensity: 0.005655479
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 1}
@@ -1272,6 +1272,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516631468}
   m_CullTransparentMesh: 0
+--- !u!1 &544709000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 544709002}
+  - component: {fileID: 544709001}
+  m_Layer: 10
+  m_Name: BodyCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &544709001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544709000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5d812417c404fecbd9091b94726bbfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
+  offset: {x: 0, y: -1, z: 0}
+  inBlock: 0
+--- !u!4 &544709002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544709000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1100592808}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &552991426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,7 +1806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e489d710cb2ddf4d832bd12c796ab82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTime: 0.52365243
+  currentTime: 0.59427637
   sunLight: {fileID: 1292929153}
   sun: {fileID: 1040676654}
   moon: {fileID: 742745127}
@@ -2046,8 +2092,8 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
-  underwaterFogDistance: 0.15
-  underwaterFogColor: {r: 0.14097543, g: 0.23400232, b: 0.3018868, a: 1}
+  underwaterFogDistance: 0.12
+  underwaterFogColor: {r: 0, g: 0.23678347, b: 0.348, a: 1}
   regularFogColor: {r: 0.41037738, g: 0.85289377, b: 1, a: 1}
 --- !u!1 &711595655
 GameObject:
@@ -4009,7 +4055,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040676654}
-  m_LocalRotation: {x: 0.99724054, y: -0, z: -0, w: -0.074238054}
+  m_LocalRotation: {x: 0.956459, y: -0, z: -0, w: -0.29186678}
   m_LocalPosition: {x: 335.8, y: 0, z: 0.000015258789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4050,13 +4096,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  accelerated: 10
+  accelerated: 7
   jumpSpeed: 10
   gravity: -80
   jumpHeight: 1.5
   groundDistance: 0.1
   isMainController: 1
   isChase: 0
+  jumpCooldown: 0.35
+  bodyInBlock: {fileID: 544709001}
+  speedUnderwater: 2.5
+  acceleratedUnderwater: 4.5
+  jumpHeightUnderwater: 0.5
+  gravityUnderwater: -5
 --- !u!33 &1100592807
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4081,6 +4133,7 @@ Transform:
   - {fileID: 902543636}
   - {fileID: 855440258}
   - {fileID: 1334834007}
+  - {fileID: 544709002}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4778,7 +4831,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.9961006, g: 1, b: 0.8537736, a: 1}
-  m_Intensity: 0.9989748
+  m_Intensity: 0.9992071
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4977,7 +5030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1389725584}
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: 0.4, z: 0}
   inBlock: 0
 --- !u!1 &1348256310
 GameObject:
@@ -6282,6 +6335,12 @@ MonoBehaviour:
   groundDistance: 0.4
   isMainController: 0
   isChase: 1
+  jumpCooldown: 0.3
+  bodyInBlock: {fileID: 0}
+  speedUnderwater: 6
+  acceleratedUnderwater: 6
+  jumpHeightUnderwater: 5
+  gravityUnderwater: -4.9
 --- !u!33 &2111861837
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6363,6 +6422,12 @@ MonoBehaviour:
   groundDistance: 0.45
   isMainController: 0
   isChase: 0
+  jumpCooldown: 0.3
+  bodyInBlock: {fileID: 0}
+  speedUnderwater: 6
+  acceleratedUnderwater: 6
+  jumpHeightUnderwater: 5
+  gravityUnderwater: -4.9
 --- !u!33 &2834078683279919057
 MeshFilter:
   m_ObjectHideFlags: 0
