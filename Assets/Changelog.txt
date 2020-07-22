@@ -1,0 +1,31 @@
+
+
+[22.07.2020]==================================================
+Visual overhaull.
+Most of the changes are aimed at the visual component of the game.
+
+[New] Game now can determine if player is in a particular block. Can be used for damage, water effects, or other special block features.
+[New] Water postprocessing profile. Currently now used, so all that remains is to hook it up to the current "in block" code.
+[New] Core block is now generated at the bottom to prevent player from falling under chunks.
+[New] Sand block. Not used for now.
+[New] A new sky system based on a layered spherical object with shaders. Supports dynamic movement of the sun, stars, and clouds. (Used DMeville/DMSkybox from it's githhub.)
+[New] Water shader for water surface. (Used danielshervheim/Stylized-Water from it's githhub.)
+[New] Hold shift to run faster.
+
+[Change] Updated to Unity beta "2020.1.0b16" from "2019.3.7f1".
+[Change] Quite a serious edit of the project file structure and some cleanup's.
+[Change] Switched to linear color space and to defferend rendering.
+[Change] Reconfiguration of most existing materials.
+[Change] Some texture tweaks - remade stone texture, new sand and core textures; Less bluish grass and slightly richer tree textures.
+[Change] Added more post-processing effects. Need for settings menu.
+[Change] Character control and jumps are now a little more responsive.
+[Change] Water is now considered as block type and fills the it's reservoir to the bottom.
+[Change] Left click to break blocks and right to place instead of left for placing and right for breaking.
+[Change] "PP" layer renamed to "PostProcessing".
+[Change] .gitignore tweaks, including Rider Editor related stuff.
+
+[Fix] Disabled Mip-Maps on texture atlas, so less rendering issues at distance.
+[Fix] Wrong script linking on water chunk prefab.
+
+[Other] Updated some packages.
+[Other] Temporarely disabled that zombie guy in the scene.

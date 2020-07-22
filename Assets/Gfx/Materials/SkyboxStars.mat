@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SkyboxStars
+  m_Shader: {fileID: 4800000, guid: 1d5873a41d6719c47920656c25fb4f7b, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 1000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Stars:
+        m_Texture: {fileID: 8900000, guid: 2d2480918448da848aee1e198695640c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 8900000, guid: 77520064aae579b48aa2e3d446f8c536, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tex3coord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _StarsFade: 0.00217447
+    - _StarsGlobalIntensity: 5
+    - _StarsSmoothstepMax: 2.82
+    - _StarsSmoothstepMin: 0.63
+    - _Timescale: 0.3
+    - __dirty: 0
+    m_Colors:
+    - _BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    - _SkyRotation: {r: 1, g: 0.44, b: 0, a: 0}
+    - _StarColor: {r: 1, g: 1, b: 1, a: 1}
+    - _StarsLayersIntensity: {r: 1, g: 1, b: 1, a: 0}
+    - _StarsSmoothStepMinMax: {r: 0.73, g: 0.94, b: 0, a: 0}
+  m_BuildTextureStacks: []
