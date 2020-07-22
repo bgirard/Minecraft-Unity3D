@@ -2,12 +2,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CurrentBlock : MonoBehaviour
+public class CurrentlyInBlock : MonoBehaviour
 {
         private Transform tf;
         public Text text;
 
         public Vector3 offset = Vector3.zero;
+        public BlockType inBlock;
         
         private void Start()
         {
@@ -27,7 +28,8 @@ public class CurrentBlock : MonoBehaviour
                 int biy = Mathf.FloorToInt(position.y + offset.y);
                 int biz = Mathf.FloorToInt(position.z + offset.z) - chunkPosZ;
 
-                text.text = "" + TerrainGenerator.getBlock(cp, bix, biy, biz);
+                inBlock = TerrainGenerator.getBlock(cp, bix, biy, biz);
+                text.text = "" + inBlock;
 
                 /*if (Input.GetKeyDown(KeyCode.LeftControl))
                 {
