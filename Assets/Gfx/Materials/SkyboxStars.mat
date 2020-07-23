@@ -32,7 +32,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _StarsFade: 0.000500035
+    - _StarsFade: 0.0015696207
     - _StarsGlobalIntensity: 5
     - _StarsSmoothstepMax: 2.82
     - _StarsSmoothstepMin: 0.63

@@ -6,12 +6,17 @@
 
 [Change] Less acid-blue sky.
 [Change] Water material and shader related tweaks.
+[Change] SkySphere now adjust more effects to keep water darker at night.
+[Change] The UI now uses canvases more actively to keep areas that need to be redrawn low.
 
 [Other] Some additional folders cleanup.
+[Other] UI now is prefab based, so you could change it without scene editing.
+[Other] SkySphere system sets it's time to 0.5f on disable.
 
 
 [22.07.2020]==================================================
-Visual overhaull.
+
+Visual overhaul.
 Most of the changes are aimed at the visual component of the game.
 
 [New] Game now can determine if player is in a particular block. Can be used for damage, water effects, or other special block features.
@@ -38,8 +43,27 @@ Most of the changes are aimed at the visual component of the game.
 [Fix] Wrong script linking on water chunk prefab.
 
 [Other] Updated some packages.
-[Other] Temporarely disabled that zombie guy in the scene.
+[Other] Temporarily disabled that zombie guy in the scene.
+[Other] This changelog file was created. 
 
+
+[17.04.2020]==================================================
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.test-framework from version 1.1.11 to 1.1.13
+
+
+[29.03.2020]==================================================
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.ide.vscode from version 1.1.3 to 1.1.4
+  com.unity.test-framework from version 1.1.3 to 1.1.11
 
 
 [8.02.2020]==================================================
@@ -86,21 +110,5 @@ The following packages were added:
   com.unity.modules.vr@1.0.0
   com.unity.modules.wind@1.0.0
   com.unity.modules.xr@1.0.0
-
-[29.03.2020]==================================================
-
-Packages were changed.
-Update Mode: updateDependencies
-
-The following packages were updated:
-  com.unity.ide.vscode from version 1.1.3 to 1.1.4
-  com.unity.test-framework from version 1.1.3 to 1.1.11
-
-[17.04.2020]==================================================
-
-Packages were changed.
-Update Mode: updateDependencies
-
-The following packages were updated:
-  com.unity.test-framework from version 1.1.11 to 1.1.13
-
+  
+  
