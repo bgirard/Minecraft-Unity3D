@@ -17,6 +17,8 @@ public class TerrainModifier : MonoBehaviour
     }
     private void Update()
     {
+        if (PauseMenu.pause)    return;
+        
         bool leftClick = Input.GetMouseButtonDown(0);
         bool rightClick = Input.GetMouseButtonDown(1);
         

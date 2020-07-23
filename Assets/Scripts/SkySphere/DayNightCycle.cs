@@ -6,9 +6,6 @@ using UnityEngine;
 public class DayNightCycle : MonoBehaviour
 {
     public float speed = 20;
-    private float rotation = 40;
-    private float skyboxRotation = 0;
-
     public static float time = 1;
 
     private SkySphere skySphere;
