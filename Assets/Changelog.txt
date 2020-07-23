@@ -1,9 +1,11 @@
 [23.07.2020]==================================================
 
+[New] Swimming, water slows you down.
 [New] Pause menu and settings mocap.
 [New] TextMeshPro import.
 
 [Change] Less acid-blue sky.
+[Change] Water material and shader related tweaks.
 
 [Other] Some additional folders cleanup.
 
@@ -13,7 +15,7 @@ Visual overhaull.
 Most of the changes are aimed at the visual component of the game.
 
 [New] Game now can determine if player is in a particular block. Can be used for damage, water effects, or other special block features.
-[New] Water postprocessing profile. Currently not used, so all that remains is to hook it up to the current "in block" code.
+[New] Water postprocessing profile.
 [New] Core block is now generated at the bottom to prevent player from falling under chunks.
 [New] Sand block. Not used for now.
 [New] A new sky system based on a layered spherical object with shaders. Supports dynamic movement of the sun, stars, and clouds. (Used DMeville/DMSkybox from it's githhub.)
