@@ -26,6 +26,7 @@ public class PauseMenu : MonoBehaviour
             
             pause = !pause;
             Local();
+            
         }
     }
 
