@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MouseLook : MonoBehaviour {
+    
     public float mouseSensitivity = 1;
-
     public Transform playerBody;
-
     private float xRotation = 0f;
 
-    // Start is called before the first frame update
-    void Start() {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
+    private void Start() 
+    {
         mouseSensitivity = 180;
 
         if (Application.isEditor)
@@ -22,8 +18,9 @@ public class MouseLook : MonoBehaviour {
 
     float mx;
 
-    // Update is called once per frame
-    void Update() {
+    private void Update() 
+    {
+        if(PauseMenu.pause)    return;
 
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
@@ -49,9 +46,9 @@ public class MouseLook : MonoBehaviour {
         //playerBody.rotation = Quaternion.Euler(0,playerBody.rotation.eulerAngles.y + mouseX,0);
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate() 
+    {
         //float mouseX = mx * mouseSensitivity * Time.fixedDeltaTime;
-
         // playerBody.GetComponent<Rigidbody>().MoveRotation(playerBody.GetComponent<Rigidbody>().rotation *= Quaternion.Euler(0, mouseX, 0));
     }
 }

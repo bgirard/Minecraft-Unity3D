@@ -200,7 +200,7 @@ Material:
     - _ScaleOffset: {r: 1, g: 0.18, b: 0, a: 0}
     - _SkyColor: {r: 0.120013885, g: 0.3730585, b: 0.8207547, a: 1}
     - _SkyColorBottom: {r: 0, g: 1, b: 0.8638129, a: 1}
-    - _SkyColorTop: {r: 0, g: 0.48626852, b: 1, a: 1}
+    - _SkyColorTop: {r: 0.319, g: 0.65015274, b: 1, a: 1}
     - _SmoothstepMinMax: {r: 0.59, g: 0.73, b: 0, a: 0}
     - _SmoothstepMinMax2: {r: 0, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}

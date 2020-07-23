@@ -71,6 +71,8 @@ public class PlayerMovement : MonoBehaviour
         
         if (isMainController)
         {
+            if(PauseMenu.pause) return;
+            
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
 
