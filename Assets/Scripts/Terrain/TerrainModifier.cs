@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class TerrainModifier : MonoBehaviour
@@ -15,6 +13,7 @@ public class TerrainModifier : MonoBehaviour
     {
 
     }
+    
     private void Update()
     {
         if (PauseMenu.pause)    return;

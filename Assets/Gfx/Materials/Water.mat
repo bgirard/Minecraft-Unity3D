@@ -88,14 +88,14 @@ Material:
     - _Mode: 3
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _ReflectionContribution: 1
+    - _ReflectionContribution: 0
     - _SmoothnessTextureChannel: 0
     - _SparkleExponent: 40000
     - _SparkleScale: 40
     - _SparkleSpeed: 0.025
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _SunSpecularExponent: 3500
+    - _SunSpecularExponent: 4000
     - _UVSec: 0
     - _Wave1Amplitude: 0.02
     - _Wave1Direction: 0.561
@@ -118,5 +118,5 @@ Material:
     - _ShadowColor: {r: 0.16220179, g: 0.21706232, b: 0.25471693, a: 1}
     - _ShallowColor: {r: 0.44313726, g: 0.9137255, b: 0.6627451, a: 1}
     - _SparkleColor: {r: 0.14117648, g: 0.14117648, b: 0.14117648, a: 1}
-    - _SunSpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SunSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
