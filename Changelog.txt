@@ -1,3 +1,16 @@
+[24.07.2020]==================================================
+
+[New] Settings system that use ini files. Currently provide options to enable\disable postprocessing, underwater effects and to select antialiasing. (Used cemdervis/SharpConfig from it's githhub repo for ini functionality.)
+[New] Added new pixelated font. 
+[New] Added animated slime, chicken and apple geometry, textures and materials. Enable "StyleTest" in scene to see them. 
+
+[Change] Renamed "Product Name" to "Community Voxel Project".
+[Change] Applied icon for application.
+
+[Fix] Fixed that small white ripple on water in build.
+
+[Other] More folders cleanup.
+
 [23.07.2020]==================================================
 
 [New] Swimming, water slows you down.
@@ -23,8 +36,8 @@ Most of the changes are aimed at the visual component of the game.
 [New] Water postprocessing profile.
 [New] Core block is now generated at the bottom to prevent player from falling under chunks.
 [New] Sand block. Not used for now.
-[New] A new sky system based on a layered spherical object with shaders. Supports dynamic movement of the sun, stars, and clouds. (Used DMeville/DMSkybox from it's githhub.)
-[New] Water shader for water surface. (Used danielshervheim/Stylized-Water from it's githhub.)
+[New] A new sky system based on a layered spherical object with shaders. Supports dynamic movement of the sun, stars, and clouds. (Used DMeville/DMSkybox from it's githhub repo.)
+[New] Water shader for water surface. (Used danielshervheim/Stylized-Water from it's githhub repo.)
 [New] Hold shift to run faster.
 
 [Change] Updated to Unity beta "2020.1.0b16" from "2019.3.7f1".
